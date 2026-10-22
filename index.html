@@ -1538,7 +1538,7 @@
 <div id="toastBox"></div>
 
 <!-- Background Audio Element: Musik Creed -->
-<audio id="creedAudio" src="musik/MusikCreed.MP3" preload="auto" loop></audio>
+<audio id="creedAudio" src="musik/MusikCreed.MP3" preload="auto" loop playsinline autoplay></audio>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
@@ -1607,7 +1607,7 @@ function getCreedAudio() {
   if (!creedAudio) {
     creedAudio = document.getElementById("creedAudio");
     if (creedAudio) {
-      creedAudio.volume = 0.55;
+      creedAudio.volume = 0.6;
     }
   }
   return creedAudio;
@@ -1617,6 +1617,9 @@ function startBackgroundMusic(silent = false) {
   const audio = getCreedAudio();
   if (!audio) return;
 
+  audio.muted = false;
+  audio.volume = 0.6;
+
   const playPromise = audio.play();
   if (playPromise !== undefined) {
     playPromise.then(() => {
@@ -1624,9 +1627,27 @@ function startBackgroundMusic(silent = false) {
       updateMusicUI();
       if (!silent) showToast("Musik Creed mulai diputar.");
     }).catch(err => {
-      console.log("Autoplay waiting for user gesture:", err);
-      isMusicPlaying = false;
-      updateMusicUI();
+      // Jika kebijakan browser membatasi audio bersuara tanpa interaksi awal:
+      // Mulai audio secara muted agar stream langsung berjalan tanpa tertunda
+      audio.muted = true;
+      audio.play().then(() => {
+        // Begitu pengguna berinteraksi (geser mouse, sentuh layar, scroll, klik), langsung nyalakan suara
+        const unmuteHandler = function() {
+          audio.muted = false;
+          audio.volume = 0.6;
+          isMusicPlaying = true;
+          updateMusicUI();
+          interactionEvents.forEach(evt => {
+            window.removeEventListener(evt, unmuteHandler);
+            document.removeEventListener(evt, unmuteHandler);
+          });
+        };
+        const interactionEvents = ['click', 'touchstart', 'touchend', 'scroll', 'mousemove', 'wheel', 'keydown', 'pointerdown'];
+        interactionEvents.forEach(evt => {
+          window.addEventListener(evt, unmuteHandler, { passive: true });
+          document.addEventListener(evt, unmuteHandler, { passive: true });
+        });
+      }).catch(() => {});
     });
   }
 }
@@ -1641,7 +1662,9 @@ function stopBackgroundMusic(silent = false) {
 }
 
 function toggleBackgroundMusic() {
-  if (isMusicPlaying) {
+  const audio = getCreedAudio();
+  if (!audio) return;
+  if (!audio.paused && !audio.muted) {
     stopBackgroundMusic(false);
   } else {
     startBackgroundMusic(false);
@@ -1649,13 +1672,16 @@ function toggleBackgroundMusic() {
 }
 
 function updateMusicUI() {
+  const audio = getCreedAudio();
   const eq = document.getElementById("eqVisualizer");
   const toggleBtn = document.getElementById("btnMusicToggle");
   const toggleTxt = document.getElementById("musicToggleText");
   const statusFooter = document.getElementById("musicStatusFooter");
   const footerBtn = document.getElementById("btnFooterMusicToggle");
 
-  if (isMusicPlaying) {
+  const playingNow = audio ? (!audio.paused && !audio.muted) : isMusicPlaying;
+
+  if (playingNow) {
     if (eq) eq.classList.add("playing");
     if (toggleBtn) {
       toggleBtn.classList.remove("muted");
@@ -1686,19 +1712,29 @@ function updateMusicUI() {
   }
 }
 
-// Otomatis Aktifkan Musik Latar saat Web Dibuka (dengan Gesture Fallback untuk Browser Policy)
+// Otomatis Aktifkan Musik Latar saat Web Dibuka (dengan Fallback Multi-Interaksi)
 function initAutoplayMusic() {
   startBackgroundMusic(true);
 
-  const unlockEvents = ['click', 'pointerdown', 'touchstart', 'scroll', 'keydown'];
-  const unlockAudioHandler = function() {
+  const gestureEvents = ['click', 'pointerdown', 'touchstart', 'scroll', 'mousemove', 'wheel', 'keydown', 'visibilitychange'];
+  const triggerAudioGesture = function() {
     const audio = getCreedAudio();
-    if (!isMusicPlaying && audio) {
-      startBackgroundMusic(true);
+    if (audio) {
+      if (audio.paused || audio.muted) {
+        audio.muted = false;
+        audio.volume = 0.6;
+        audio.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI();
+        }).catch(() => {});
+      }
     }
-    unlockEvents.forEach(evt => window.removeEventListener(evt, unlockAudioHandler));
   };
-  unlockEvents.forEach(evt => window.addEventListener(evt, unlockAudioHandler, { passive: true }));
+
+  gestureEvents.forEach(evt => {
+    window.addEventListener(evt, triggerAudioGesture, { passive: true });
+    document.addEventListener(evt, triggerAudioGesture, { passive: true });
+  });
 }
 
 // Scroll Spy Otomatis untuk Navigasi Header Modern
@@ -1936,6 +1972,9 @@ function submitRegistrationToWa() {
 document.addEventListener("DOMContentLoaded", function() {
   renderKamus();
   renderFaq();
+  initAutoplayMusic();
+});
+window.addEventListener("load", function() {
   initAutoplayMusic();
 });
 </script>
