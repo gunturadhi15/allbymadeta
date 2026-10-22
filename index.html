@@ -42,13 +42,16 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===== TYPOGRAPHY RESMI: MONTSERRAT BLACK (900) UNTUK SEMUA JUDUL GOLD ===== */
+    /* ===== TYPOGRAPHY RESMI: MONTSERRAT BLACK (900) KAPITAL UNTUK SEMUA JUDUL GOLD ===== */
     h1, h2, h3, h4, h5, h6,
-    .gold-heading {
+    .gold-heading,
+    .section-eyebrow,
+    .section-subheading {
       color: #F7DB88 !important;
       font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif !important;
       font-weight: 900 !important;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
+      text-transform: uppercase !important;
       text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7), 0 0 1px rgba(247, 219, 136, 0.4);
     }
 
@@ -526,7 +529,7 @@
     <!-- Right Controls: Single Music Toggle Pill & Quick WhatsApp -->
     <div class="flex items-center gap-2.5 shrink-0">
       <!-- Precision Single Audio Toggle Pill (Clean & Minimalist) -->
-      <button id="btnMusicToggle" onclick="toggleBackgroundMusic()" title="Musik Suasana Latar (Klik untuk On/Off)" class="music-toggle-pill group" aria-label="Toggle Musik Suasana">
+      <button id="btnMusicToggle" onclick="toggleBackgroundMusic()" title="MUSIK SUASANA LATAR (CREED) (Klik untuk On/Off)" class="music-toggle-pill group" aria-label="Toggle Musik Suasana">
         <div id="eqVisualizer" class="eq-mini playing">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -657,7 +660,7 @@
         <svg class="w-5 h-5 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>
         <h3 class="text-xl sm:text-2xl text-center">Pilih Tujuan Finansial Anda</h3>
       </div>
-      <p class="text-xs text-[#EAECEF] text-center mb-8">Pilih salah satu program di bawah ini untuk melihat rincian dan ketentuan lengkapnya</p>
+      <p class="text-xs font-bold text-[#EAECEF] text-center mb-8 uppercase tracking-wider">PILIH SALAH SATU PROGRAM DI BAWAH INI UNTUK MELIHAT RINCIAN DAN KETENTUAN LENGKAPNYA</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <a href="#seksi-5" class="gold-btn py-4 px-5 text-sm rounded-xl text-center">
           <svg class="w-4 h-4 shrink-0 text-[#141518]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M18.09 10.37A6 6 0 1 1 10.34 18" /><path d="M7 6h1v4" /></svg>
@@ -682,9 +685,9 @@
     <div class="text-center mb-8">
       <div class="flex items-center justify-center gap-2 mb-2">
         <svg class="w-6 h-6 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></svg>
-        <h3 class="text-2xl">4 Pilar Keunggulan Layanan Kami</h3>
+        <h3 class="text-2xl font-black uppercase text-[#F7DB88]">4 PILAR KEUNGGULAN LAYANAN KAMI</h3>
       </div>
-      <p class="text-xs text-[#EAECEF]">Fondasi integritas yang membedakan manajemen ALLBYMADETA dari arisan konvensional</p>
+      <p class="text-xs font-bold text-[#EAECEF] uppercase tracking-wider">FONDASI INTEGRITAS YANG MEMBEDAKAN MANAJEMEN ALLBYMADETA DARI ARISAN KONVENSIONAL</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -692,7 +695,7 @@
         <div class="w-12 h-12 rounded-xl bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.25)] flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
         </div>
-        <h4 class="text-lg mb-2">Verifikasi Identitas Ketat</h4>
+        <h4 class="text-lg mb-2 font-black uppercase text-[#F7DB88]">VERIFIKASI IDENTITAS KETAT</h4>
         <p class="text-sm text-[#EAECEF] leading-relaxed">Setiap calon anggota melewati validasi KTP, domisili, dan kontak darurat keluarga untuk memastikan keamanan seluruh peserta.</p>
       </div>
 
@@ -700,7 +703,7 @@
         <div class="w-12 h-12 rounded-xl bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.25)] flex items-center justify-center mb-4">
           <svg class="w-6 h-6 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>
         </div>
-        <h4 class="text-lg mb-2">Pencairan 100% Tepat Waktu</h4>
+        <h4 class="text-lg mb-2 font-black uppercase text-[#F7DB88]">PENCAIRAN 100% TEPAT WAKTU</h4>
         <p class="text-sm text-[#EAECEF] leading-relaxed">Jaminan pencairan dana (Get) sesuai jadwal melalui dukungan sistem manajemen Dana Talangan (Cover) Owner.</p>
       </div>
 
@@ -809,7 +812,7 @@
         <span>03 • GLOSARIUM RESMI</span>
       </div>
       <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">KAMUS ALLBYMADETA</h2>
-      <p class="text-sm text-[#EAECEF] max-w-[65ch] mx-auto">Pahami seluruh istilah operasional arisan, Dapin, dan kredit Allbymadeta secara transparan agar Anda siap bertransaksi dengan penuh keyakinan.</p>
+      <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">PAHAMI SELURUH ISTILAH OPERASIONAL ARISAN, DAPIN, DAN KREDIT ALLBYMADETA SECARA TRANSPARAN</p>
     </div>
 
     <!-- Search & Filter Controls -->
@@ -905,7 +908,7 @@
     <div class="luxury-card rounded-2xl overflow-hidden max-w-4xl mx-auto">
       <div class="p-6 hairline-divider flex items-center gap-2.5">
         <svg class="w-5 h-5 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
-        <h4 class="text-lg font-extrabold text-[#F7DB88]">Tabel Standar Batas Waktu & Format Berita Transfer</h4>
+        <h4 class="text-lg font-black uppercase text-[#F7DB88]">TABEL STANDAR BATAS WAKTU & FORMAT BERITA TRANSFER</h4>
       </div>
       <div class="overflow-x-auto">
         <table>
@@ -949,7 +952,7 @@
         <span>05 • PILIHAN SKEMA ARISAN</span>
       </div>
       <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">JENIS-JENIS ARISAN</h2>
-      <p class="text-sm text-[#EAECEF] max-w-[65ch] mx-auto">Allbymadeta menghadirkan 3 pilihan skema arisan unggulan yang transparan. Tekan tombol pada masing-masing kartu untuk mempelajari penjelasan dan mekanisme lengkapnya.</p>
+      <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">ALLBYMADETA MENGHADIRKAN 3 PILIHAN SKEMA ARISAN UNGGULAN YANG TRANSPARAN</p>
     </div>
 
     <!-- 3 Kartu Jenis Arisan dengan Expandable Detail -->
@@ -961,7 +964,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">01</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">Arisan Menurun</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN MENURUN</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Setoran Sesuai Nomor Urut Slot</p>
             </div>
           </div>
@@ -994,9 +997,9 @@
           </button>
         </div>
 
-        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek ketersediaan Opslot untuk Arisan MENURUN. Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan MENURUN. Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
           <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-          Cek Opslot Arisan Menurun
+          Cek List Arisan Menurun
         </button>
       </div>
 
@@ -1006,7 +1009,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">02</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">Arisan Tender (Lelang)</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN TENDER (LELANG)</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Pencairan Fleksibel Sistem Penawaran</p>
             </div>
           </div>
@@ -1051,7 +1054,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">03</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">Arisan Flat (Tetap)</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN FLAT (TETAP)</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Setoran Sama Rata Seluruh Peserta</p>
             </div>
           </div>
@@ -1084,9 +1087,9 @@
           </button>
         </div>
 
-        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek ketersediaan Opslot untuk Arisan FLAT (Tetap). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan FLAT (Tetap). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
           <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-          Cek Opslot Arisan Flat
+          Cek List Arisan Flat
         </button>
       </div>
 
@@ -1104,7 +1107,7 @@
         <span>06 • REGULASI & PERSYARATAN RESMI</span>
       </div>
       <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">SYARAT & KETENTUAN LAYANAN ALLBYMADETA</h2>
-      <p class="text-sm text-[#EAECEF] max-w-[65ch] mx-auto">Standar operasional transparan yang mengikat seluruh program Allbymadeta. Tekan tombol pada masing-masing layanan untuk melihat pasal dan ketentuan lengkapnya.</p>
+      <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">STANDAR OPERASIONAL TRANSPARAN YANG MENGIKAT SELURUH PROGRAM ALLBYMADETA</p>
     </div>
 
     <!-- 3 Kartu S&K Terpadu (Arisan, Dapin, Kredit) -->
@@ -1116,7 +1119,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">01</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">S&K Keanggotaan Arisan</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">S&K KEANGGOTAAN ARISAN</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Regulasi Kloter Arisan Resmi</p>
             </div>
           </div>
@@ -1168,7 +1171,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">02</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">S&K Dana Pinjaman (Dapin)</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">S&K DANA PINJAMAN (DAPIN)</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Fasilitas Pembiayaan Mikro</p>
             </div>
           </div>
@@ -1220,7 +1223,7 @@
           <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
             <div class="number-badge">03</div>
             <div>
-              <h4 class="text-lg font-extrabold text-[#F7DB88]">S&K Cicilan Barang & Emas</h4>
+              <h4 class="text-lg font-black uppercase text-[#F7DB88]">S&K CICILAN BARANG & EMAS</h4>
               <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Program Pengadaan Berjangka</p>
             </div>
           </div>
@@ -1357,7 +1360,7 @@
         <span>08 • ALUR PENDAFTARAN & REGISTRASI</span>
       </div>
       <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">6 LANGKAH PENDAFTARAN & FORMULIR REGISTRASI WHATSAPP</h2>
-      <p class="text-sm text-[#EAECEF] max-w-[65ch] mx-auto">Alur terstruktur dan mudah dipahami untuk memulai partisipasi Anda dalam komunitas finansial ALLBYMADETA.</p>
+      <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">ALUR TERSTRUKTUR DAN MUDAH DIPAHAMI UNTUK MEMULAI PARTISIPASI ANDA DI ALLBYMADETA</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -1466,7 +1469,7 @@
         <span>09 • PUSAT BANTUAN & PERTANYAAN UMUM</span>
       </div>
       <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">PERTANYAAN YANG SERING DIAJUKAN (FAQ)</h2>
-      <p class="text-sm text-[#EAECEF] max-w-[65ch] mx-auto">Temukan jawaban transparan dan cepat atas pertanyaan umum seputar operasional, jaminan keamanan, dan tata cara keanggotaan Allbymadeta.</p>
+      <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">TEMUKAN JAWABAN TRANSPARAN DAN CEPAT SEPUTAR OPERASIONAL, JAMINAN KEAMANAN, DAN TATA CARA KEANGGOTAAN ALLBYMADETA</p>
     </div>
 
     <!-- FAQ Accordion -->
@@ -1474,7 +1477,7 @@
 
     <!-- Banner Penutup Ajakan Bertindak -->
     <div class="luxury-card p-8 sm:p-12 rounded-2xl text-center max-w-4xl mx-auto" style="background: linear-gradient(135deg, rgba(216,178,103,0.12), rgba(216,178,103,0.03));">
-      <h3 class="text-2xl sm:text-3xl mb-4">Siap Memulai Perencanaan Finansial Bersama Kami?</h3>
+      <h3 class="text-2xl sm:text-3xl mb-4 font-black uppercase text-[#F7DB88]">SIAP MEMULAI PERENCANAAN FINANSIAL BERSAMA KAMI?</h3>
       <p class="text-base text-[#EAECEF] mb-8 max-w-[60ch] mx-auto leading-relaxed">Jangan tunda target finansial Anda. Konsultasikan kloter arisan, fasilitas Dapin, atau program cicilan Anda bersama tim manajemen Allbymadeta yang berdedikasi dan amanah.</p>
       <button onclick="openWhatsAppWithText('Halo Admin, saya tertarik untuk bergabung dengan layanan ALLBYMADETA. Mohon informasi lebih lanjut mengenai layanan yang tersedia.')" class="wa-btn px-10 py-4 text-base rounded-xl pulse-emerald">
         <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
@@ -1505,7 +1508,7 @@
       <div>
         <h4 class="text-base mb-3 text-[#D8B267] flex items-center gap-2 font-['Montserrat'] font-bold">
           <svg class="w-4 h-4 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
-          Musik Suasana Latar
+          MUSIK SUASANA LATAR (CREED)
         </h4>
         <p id="musicStatusFooter" class="text-xs text-[#EAECEF] mb-4">Musik Latar: Sedang Aktif</p>
         <div>
@@ -1533,6 +1536,9 @@
 
 <!-- ===== TOAST BOX ===== -->
 <div id="toastBox"></div>
+
+<!-- Background Audio Element: Musik Creed -->
+<audio id="creedAudio" src="musik/MusikCreed.MP3" preload="auto" loop></audio>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
@@ -1592,68 +1598,46 @@ function fallbackCopy(text, label) {
 }
 
 // ===================================================================
-// 4. AUDIO ENGINE & AUTOPLAY (Mewah, Tenang, Otomatis & Terpadu)
+// 4. AUDIO ENGINE: MUSIK CREED (musik/MusikCreed.MP3)
 // ===================================================================
-let audioCtx = null;
 let isMusicPlaying = false;
-let musicLoopTimer = null;
-let chordStepIndex = 0;
+let creedAudio = null;
 
-const LUXURY_CHORDS = [
-  [261.63, 329.63, 392.00, 493.88, 587.33],
-  [220.00, 261.63, 329.63, 392.00, 493.88],
-  [174.61, 220.00, 261.63, 329.63, 392.00],
-  [196.00, 246.94, 293.66, 349.23, 440.00]
-];
-
-function playAmbientChordStep() {
-  if (!isMusicPlaying || !audioCtx) return;
-  const now = audioCtx.currentTime;
-  const notes = LUXURY_CHORDS[chordStepIndex % LUXURY_CHORDS.length];
-  chordStepIndex++;
-
-  notes.forEach((freq, idx) => {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = idx % 2 === 0 ? "sine" : "triangle";
-    osc.frequency.setValueAtTime(freq, now + idx * 0.18);
-
-    gain.gain.setValueAtTime(0.0001, now + idx * 0.18);
-    gain.gain.exponentialRampToValueAtTime(0.026, now + idx * 0.18 + 0.35);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.18 + 3.1);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start(now + idx * 0.18);
-    osc.stop(now + idx * 0.18 + 3.2);
-  });
+function getCreedAudio() {
+  if (!creedAudio) {
+    creedAudio = document.getElementById("creedAudio");
+    if (creedAudio) {
+      creedAudio.volume = 0.55;
+    }
+  }
+  return creedAudio;
 }
 
 function startBackgroundMusic(silent = false) {
-  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) return;
-  if (!audioCtx) audioCtx = new AudioContextClass();
-  if (audioCtx.state === "suspended") {
-    audioCtx.resume();
-  }
-  if (isMusicPlaying) return;
+  const audio = getCreedAudio();
+  if (!audio) return;
 
-  isMusicPlaying = true;
-  updateMusicUI();
-  playAmbientChordStep();
-  if (!musicLoopTimer) {
-    musicLoopTimer = setInterval(playAmbientChordStep, 3200);
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      isMusicPlaying = true;
+      updateMusicUI();
+      if (!silent) showToast("Musik Creed mulai diputar.");
+    }).catch(err => {
+      console.log("Autoplay waiting for user gesture:", err);
+      isMusicPlaying = false;
+      updateMusicUI();
+    });
   }
-  if (!silent) showToast("Musik suasana latar aktif.");
 }
 
 function stopBackgroundMusic(silent = false) {
+  const audio = getCreedAudio();
+  if (!audio) return;
+  audio.pause();
   isMusicPlaying = false;
-  if (musicLoopTimer) { clearInterval(musicLoopTimer); musicLoopTimer = null; }
-  if (audioCtx && audioCtx.state === "running") audioCtx.suspend();
-  chordStepIndex = 0;
   updateMusicUI();
-  if (!silent) showToast("Musik suasana latar dinonaktifkan.");
+  if (!silent) showToast("Musik Creed dinonaktifkan.");
 }
 
 function toggleBackgroundMusic() {
@@ -1678,11 +1662,11 @@ function updateMusicUI() {
       toggleBtn.classList.add("active");
     }
     if (toggleTxt) toggleTxt.textContent = "Musik: On";
-    if (statusFooter) statusFooter.textContent = "Musik Latar: Sedang Aktif";
+    if (statusFooter) statusFooter.textContent = "Musik Latar: Musik Creed (Sedang Aktif)";
     if (footerBtn) {
       footerBtn.innerHTML = `
         <svg class="w-3.5 h-3.5 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
-        <span>Hentikan Musik Latar</span>
+        <span>Hentikan Musik Creed</span>
       `;
     }
   } else {
@@ -1696,7 +1680,7 @@ function updateMusicUI() {
     if (footerBtn) {
       footerBtn.innerHTML = `
         <svg class="w-3.5 h-3.5 fill-[#D8B267]" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4" /></svg>
-        <span>Putar Musik Suasana</span>
+        <span>Putar Musik Creed</span>
       `;
     }
   }
@@ -1708,7 +1692,8 @@ function initAutoplayMusic() {
 
   const unlockEvents = ['click', 'pointerdown', 'touchstart', 'scroll', 'keydown'];
   const unlockAudioHandler = function() {
-    if (!isMusicPlaying || (audioCtx && audioCtx.state === 'suspended')) {
+    const audio = getCreedAudio();
+    if (!isMusicPlaying && audio) {
       startBackgroundMusic(true);
     }
     unlockEvents.forEach(evt => window.removeEventListener(evt, unlockAudioHandler));
