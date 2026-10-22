@@ -1039,9 +1039,9 @@
           </button>
         </div>
 
-        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek ketersediaan Opslot untuk Arisan TENDER (Lelang). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+        <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan TENDER (Lelang). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
           <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-          Cek Opslot Arisan Tender
+          Cek List Arisan Tender
         </button>
       </div>
 
@@ -1487,8 +1487,9 @@
 <!-- ===== FOOTER ===== -->
 <footer class="bg-[#181A1E] border-t border-[rgba(216,178,103,0.2)] py-12 px-4">
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 items-center justify-between">
       <!-- Brand -->
+
       <div>
         <div class="flex items-center gap-3 mb-4">
           <img src="Gambar/Logo_Madeta.png" alt="Logo Resmi ALLBYMADETA" class="w-11 h-11 rounded-full object-contain border border-[#D8B267]/50 shadow-md bg-[#25282E]" />
@@ -1498,21 +1499,6 @@
           </div>
         </div>
         <p class="text-sm text-[#EAECEF] leading-relaxed">Platform komunitas terpercaya untuk solusi arisan eksklusif, pendanaan mikro Dapin, dan cicilan barang atau emas dengan manajemen transparan dan garansi pencairan tepat waktu.</p>
-      </div>
-
-      <!-- Navigasi Cepat -->
-      <div>
-        <h4 class="text-base mb-4 text-[#D8B267]">Navigasi Utama</h4>
-        <div class="grid grid-cols-2 gap-2 text-sm text-[#EAECEF]">
-          <a href="#seksi-1" class="hover:text-[#D8B267] transition-colors">Beranda</a>
-          <a href="#seksi-5" class="hover:text-[#D8B267] transition-colors">Jenis Arisan</a>
-          <a href="#seksi-2" class="hover:text-[#D8B267] transition-colors">Tentang Kami</a>
-          <a href="#seksi-6" class="hover:text-[#D8B267] transition-colors">S&K Layanan</a>
-          <a href="#seksi-3" class="hover:text-[#D8B267] transition-colors">Kamus Allbymadeta</a>
-          <a href="#seksi-7" class="hover:text-[#D8B267] transition-colors">Tata Tertib</a>
-          <a href="#seksi-4" class="hover:text-[#D8B267] transition-colors">Pembayaran</a>
-          <a href="#seksi-8" class="hover:text-[#D8B267] transition-colors">Pendaftaran</a>
-        </div>
       </div>
 
       <!-- Musik Footer -->
@@ -1823,6 +1809,34 @@ function getCategorySvg(cat) {
   return `<svg class="w-4 h-4 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>`;
 }
 
+
+// ===================================================================
+// 6B. EXPANDABLE DETAIL TOGGLE (Kamus Allbymadeta)
+// ===================================================================
+function toggleKamus(idx) {
+  const el = document.getElementById("kamus-desc-" + idx);
+  const btn = document.getElementById("kamus-btn-" + idx);
+  const icon = document.getElementById("kamus-icon-" + idx);
+  if (!el) return;
+
+  const isOpen = el.classList.contains("open");
+  if (isOpen) {
+    el.classList.remove("open");
+    if (icon) icon.classList.remove("rotate-180");
+    if (btn) {
+      const textSpan = btn.querySelector(".btn-text");
+      if (textSpan) textSpan.textContent = "Lihat Penjelasan Istilah";
+    }
+  } else {
+    el.classList.add("open");
+    if (icon) icon.classList.add("rotate-180");
+    if (btn) {
+      const textSpan = btn.querySelector(".btn-text");
+      if (textSpan) textSpan.textContent = "Tutup Penjelasan";
+    }
+  }
+}
+
 function renderKamus() {
   const grid = document.getElementById("kamusGrid");
   const search = (document.getElementById("inputSearchKamus").value || "").toLowerCase();
@@ -1839,24 +1853,37 @@ function renderKamus() {
     return;
   }
 
-  grid.innerHTML = filtered.map(item => `
-    <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between">
+  grid.innerHTML = filtered.map((item, i) => `
+    <div class="luxury-card p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
       <div>
-        <div class="flex items-center justify-between gap-3 mb-3 pb-3 hairline-divider">
+        <div class="flex items-center justify-between gap-3 mb-4 pb-3 hairline-divider">
           <div>
-            <h4 class="text-lg text-[#D8B267] font-['Montserrat'] font-bold tracking-wide">${item.term}</h4>
-            <p class="text-xs text-[#F7DB88] font-medium">${item.full}</p>
+            <div class="flex items-center gap-2 mb-1">
+              <h4 class="text-xl text-[#F7DB88] font-['Montserrat'] font-black tracking-wide">${item.term}</h4>
+              <span class="inline-flex items-center text-[9px] bg-[rgba(216,178,103,0.12)] text-[#D8B267] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider border border-[rgba(216,178,103,0.25)]">
+                ${item.cat}
+              </span>
+            </div>
+            <p class="text-xs text-[#EAECEF] font-semibold">${item.full}</p>
           </div>
-          <div class="w-8 h-8 rounded-lg bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.25)] flex items-center justify-center shrink-0">
+          <div class="w-9 h-9 rounded-xl bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.25)] flex items-center justify-center shrink-0">
             ${getCategorySvg(item.cat)}
           </div>
         </div>
-        <p class="text-sm text-[#EAECEF] leading-relaxed mb-4">${item.desc}</p>
-      </div>
-      <div>
-        <span class="inline-flex items-center gap-1.5 text-[10px] bg-[rgba(216,178,103,0.12)] text-[#F7DB88] px-3 py-1 rounded-full font-semibold uppercase tracking-wider">
-          ${item.cat}
-        </span>
+
+        <!-- Button Toggle Detail Deskripsi Kamus -->
+        <button onclick="toggleKamus(${i})" id="kamus-btn-${i}" class="outline-gold-btn w-full py-2.5 px-4 text-xs rounded-xl flex items-center justify-between transition-all">
+          <span class="btn-text font-bold text-[#EAECEF]">Lihat Penjelasan Istilah</span>
+          <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="kamus-icon-${i}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </button>
+
+        <!-- Expandable Detail Description Container -->
+        <div id="kamus-desc-${i}" class="expandable-content">
+          <div class="mt-3 p-3.5 bg-[#1E2024] rounded-xl border border-[#434750] text-xs text-[#EAECEF] leading-relaxed">
+            <span class="text-[#F7DB88] font-bold block mb-1">Definisi & Penggunaan:</span>
+            <p class="text-[#EAECEF] leading-relaxed">${item.desc}</p>
+          </div>
+        </div>
       </div>
     </div>
   `).join("");
