@@ -57,7 +57,7 @@ Tujuan utama produk ini adalah:
 
 ### Seksi 1 — Beranda
 * **Headline Utama (Gold Bold - H1):** `SOLUSI ARISAN EKSKLUSIF, PENDANAAN DAPIN, & KREDIT AMANAH DENGAN MANAJEMEN TRANSPARAN`
-* **Sub-Headline (Teks Putih):** Wujudkan perencanaan tabungan berjangka, kebutuhan modal usaha, dan pengadaan barang impian Anda bersama komunitas yang dikelola secara profesional. Setiap peserta diverifikasi ketat dengan perlindungan **Dana Talangan (Cover)** sehingga pencairan dijamin 100% tepat waktu.
+* **Sub-Headline (Teks Putih):** Wujudkan perencanaan tabungan berjangka, kebutuhan modal usaha, dan pengadaan barang impian Anda bersama komunitas yang dikelola secara profesional. Setiap peserta diverifikasi ketat sehingga pencairan dijamin 100% tepat waktu.
 * **Kompas Navigasi Cepat:** 4 tombol pengarah langsung ke (1) Jenis Arisan, (2) Layanan Dapin, (3) Program Cicilan/Kredit, dan (4) Kamus Arisan.
 * **4 Pilar Keunggulan:**
   1. **Verifikasi Identitas Ketat:** Setiap calon anggota melewati validasi KTP, domisili, dan kontak darurat keluarga.
@@ -80,7 +80,7 @@ Tujuan utama produk ini adalah:
   1. **DPA (Deposit Akhir):** Dana jaminan komitmen yang dibayarkan di awal pendaftaran (atau ditahan dari pencairan) dan otomatis digunakan untuk melunasi setoran peserta pada putaran Jatuh Tempo (Japo) paling akhir.
   2. **UM (Uang Muka / Uang Masuk / Upah Member):** Pada program Cicilan/Kredit berarti Uang Muka (*Down Payment*) tanda jadi pemesanan barang; pada kloter arisan tertentu merujuk pada Uang Masuk registrasi atau Upah Member.
   3. **Dapin (Dana Pinjaman):** Fasilitas pinjaman dana tunai jangka pendek khusus bagi member terverifikasi dengan ketentuan plafon, tenor, dan jasa layanan yang transparan sesuai akad.
-  4. **Japo (Jatuh Tempo):** Batas tanggal dan jam maksimal bagi peserta untuk melakukan pembayaran setoran arisan, angsuran kredit, atau pelunasan Dapin pada setiap periode.
+  4. **Japo (Jatuh Tempo):** Batas tanggal dan jam maksimal pembayaran: Semua aktifitas japo clear 18:00, Closing global 19:00.
   5. **Get (Nominal / Giliran Pencairan):** Jumlah total dana arisan yang diterima oleh peserta pada saat gilirannya tiba, atau merujuk pada jadwal tanggal turunnya pencairan dana arisan.
   6. **Kloter (Kelompok Putaran Arisan):** Satu grup putaran arisan yang memiliki nilai Get, periode waktu (mingguan/bulanan), dan jumlah slot tertentu dari putaran pertama hingga selesai.
   7. **Slot / Opslot (Nomor Urut / Open Slot):** Posisi nomor urut kepesertaan di dalam sebuah kloter. Istilah *Opslot* berarti masih tersedia nomor urut kosong yang siap diambil oleh calon peserta.
@@ -90,9 +90,9 @@ Tujuan utama produk ini adalah:
 
 ### Seksi 4 — Pembayaran (Keterangan Arisan, Dapin & Kredit + Generator Berita Transfer)
 * **Judul Seksi (Gold Bold - H2):** `INFORMASI REKENING & KETERANGAN PEMBAYARAN (ARISAN, DAPIN, KREDIT)`
-* **Fitur Kartu Rekening Resmi:** Menampilkan kartu rekening resmi (BCA, Mandiri, BRI/SeaBank, E-Wallet) dengan tombol **Salin Nomor Rekening**.
+* **Fitur Kartu Rekening Resmi:** Menampilkan kartu rekening resmi (1. Khusus Arisan: Bank BCA 4160779522 a.n Ni Made Juwita Dewi, 2. Khusus Dapin & Cicilan: Bank BRI 800801010011532 a.n Ni Made Juwita Dewi, rekening lainnya menyusul) serta tombol **Salin Nomor Rekening** dan konfirmasi bukti transfer via WhatsApp Official (087849772212) & Admin (081558200065).
 * **Tabel Keterangan & Generator Berita Transfer:**
-  * **Setoran Arisan & DPA:** Maksimal pada tanggal Japo kloter pukul 18.00 WIB. Format: `ARISAN - [Kloter] - [Slot] - [Nama]`.
+  * **Setoran Arisan & DPA:** Semua aktifitas japo clear 18:00, Closing global 19:00. Format: `ARISAN - [Kloter] - [Slot] - [Nama]`.
   * **Pelunasan Dapin:** Sesuai tanggal jatuh tempo tenor akad Dapin. Format: `DAPIN - [Kode Pinjaman] - [Nama]`.
   * **Angsuran Cicil / Kredit & UM:** Sesuai tanggal angsuran di kartu kontrol kredit. Format: `KREDIT - [Barang] - [Ke-X] - [Nama]`.
 
