@@ -9,8 +9,8 @@
   <meta name="description"
     content="Platform komunitas arisan eksklusif ALLBYMADETA dengan manajemen transparan. Layanan Arisan Menurun, Tender, Flat, Dana Pinjaman (Dapin), dan Cicilan/Kredit barang & emas." />
 
-  <!-- Prioritas Tinggi: Preload Audio LaguUpdate untuk Zero-Latency Playback -->
-  <link rel="preload" href="musik/LaguUpdate.MP3" as="audio" type="audio/mpeg" />
+  <!-- Prioritas Tinggi: Preload Audio MusikNew untuk Zero-Latency Playback -->
+  <link rel="preload" href="musik/MusikNew.MP3" as="audio" type="audio/mpeg" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -655,7 +655,7 @@
 
 <body>
 
-  <!-- Background Audio Element: LaguUpdate (Dimuat di Detik Awal untuk Zero-Latency Buffering) -->
+  <!-- Background Audio Element: MusikNew (Dimuat di Detik Awal untuk Zero-Latency Buffering) -->
   <audio id="creedAudio" src="musik/MusikNew.MP3" preload="auto" loop playsinline></audio>
   <script>
     // Immediate Zero-Delay Autoplay Pre-attempt
@@ -734,7 +734,7 @@
 
         <!-- Precision Single Audio Toggle Pill (Clean & Minimalist) -->
         <button id="btnMusicToggle" onclick="toggleBackgroundMusic()"
-          title="MUSIK SUASANA LATAR (LaguUpdate) (Klik untuk On/Off)" class="music-toggle-pill group"
+          title="MUSIK SUASANA LATAR (MusikNew) (Klik untuk On/Off)" class="music-toggle-pill group"
           aria-label="Toggle Musik Suasana">
           <div id="eqVisualizer" class="eq-mini playing">
             <span class="bar"></span>
@@ -2379,7 +2379,7 @@
             </svg>
             MUSIK SUASANA LATAR
           </h4>
-          <p id="musicStatusFooter" class="text-xs text-[#EAECEF] mb-4">Musik Latar: LaguUpdate (Sedang Aktif)</p>
+          <p id="musicStatusFooter" class="text-xs text-[#EAECEF] mb-4">Musik Latar: Sedang Aktif</p>
           <div>
             <button id="btnFooterMusicToggle" onclick="toggleBackgroundMusic()"
               class="outline-gold-btn px-4 py-2.5 text-xs rounded-xl flex items-center gap-2">
@@ -2394,8 +2394,7 @@
       </div>
 
       <div class="border-t border-[#434750] pt-6 text-center">
-        <p class="text-xs text-[#EAECEF]">Hak Cipta &copy; 2024 ALLBYMADETA. Seluruh hak dilindungi undang-undang.
-          Dikelola dengan integritas, profesionalisme, dan amanah.</p>
+        <p class="text-xs text-[#EAECEF] leading-relaxed">Hak Cipta &copy; 2026 ALLBYMADETA (Management Tiga Perisai). Seluruh materi konten, layanan arisan, pendanaan, serta transaksi pada situs ini dikelola dan menjadi tanggung jawab penuh manajemen resmi ALLBYMADETA.</p>
       </div>
     </div>
   </footer>
@@ -2632,11 +2631,12 @@
     }
 
     // ===================================================================
-    // 4. AUDIO ENGINE: LAGUUPDATE (musik/LaguUpdate.MP3)
+    // 4. AUDIO ENGINE: MUSIKNEW (musik/MusikNew.MP3)
     // ===================================================================
     let isMusicPlaying = false;
     let creedAudio = null;
     let gestureListenersActive = false;
+    let wasPlayingBeforeTabHidden = false;
 
     function getCreedAudio() {
       if (!creedAudio) {
@@ -2660,6 +2660,7 @@
     function forcePlayCreedMusic() {
       const audio = getCreedAudio();
       if (!audio) return;
+      wasPlayingBeforeTabHidden = false;
       audio.muted = false;
       audio.volume = 0.6;
       const p = audio.play();
@@ -2668,7 +2669,7 @@
           isMusicPlaying = true;
           updateMusicUI();
           cleanupGestureListeners();
-          showToast("LaguUpdate mulai diputar.");
+          showToast("Musik mulai diputar.");
         }).catch(err => {
           console.warn("Audio play error:", err);
         });
@@ -2676,6 +2677,7 @@
     }
 
     function startBackgroundMusic(silent = false) {
+      if (document.hidden) return; // Tidak memutar jika tab sedang tidak aktif
       const audio = getCreedAudio();
       if (!audio) return;
 
@@ -2688,7 +2690,7 @@
           isMusicPlaying = true;
           updateMusicUI();
           cleanupGestureListeners();
-          if (!silent) showToast("LaguUpdate mulai diputar.");
+          if (!silent) showToast("Musik mulai diputar.");
         }).catch(err => {
           // Browser membatasi pemutaran otomatis bersuara sebelum gestur pertama
           isMusicPlaying = false;
@@ -2701,6 +2703,7 @@
     function stopBackgroundMusic(silent = false) {
       const audio = getCreedAudio();
       if (!audio) return;
+      wasPlayingBeforeTabHidden = false; // Reset status memori saat user sengaja mematikan musik
       audio.pause();
       isMusicPlaying = false;
       updateMusicUI();
@@ -2734,7 +2737,7 @@
           toggleBtn.classList.add("active");
         }
         if (toggleTxt) toggleTxt.textContent = "Musik: On";
-        if (statusFooter) statusFooter.textContent = "Musik Latar: LaguUpdate (Sedang Aktif)";
+        if (statusFooter) statusFooter.textContent = "Musik Latar: Sedang Aktif";
         if (footerBtn) {
           footerBtn.innerHTML = `
         <svg class="w-3.5 h-3.5 text-[#D8B267]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" /></svg>
@@ -2752,7 +2755,7 @@
         if (footerBtn) {
           footerBtn.innerHTML = `
         <svg class="w-3.5 h-3.5 fill-[#D8B267]" viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4" /></svg>
-        <span>Putar LaguUpdate</span>
+        <span>Putar Musik</span>
       `;
         }
       }
@@ -2762,6 +2765,7 @@
     const GESTURE_EVENTS = ['pointerdown', 'mousedown', 'touchstart', 'touchend', 'click', 'keydown', 'wheel', 'scroll'];
 
     function onUserGestureTrigger(e) {
+      if (document.hidden) return; // Jangan picu jika sedang di background
       const audio = getCreedAudio();
       if (audio && (audio.paused || audio.muted)) {
         audio.muted = false;
@@ -2791,6 +2795,33 @@
         document.removeEventListener(evt, onUserGestureTrigger, { capture: true });
       });
     }
+
+    // ===================================================================
+    // KONTROL VISIBILITAS TAB: Hentikan Musik Saat Berpindah Tab
+    // ===================================================================
+    document.addEventListener("visibilitychange", function () {
+      const audio = getCreedAudio();
+      if (!audio) return;
+
+      if (document.hidden) {
+        // Tab ditinggalkan / disembunyikan: hentikan/jeda musik otomatis
+        if (!audio.paused && !audio.muted) {
+          wasPlayingBeforeTabHidden = true;
+          audio.pause();
+        }
+      } else {
+        // Tab aktif kembali: lanjutkan pemutaran jika sebelumnya sedang berputar
+        if (wasPlayingBeforeTabHidden) {
+          wasPlayingBeforeTabHidden = false;
+          audio.play().then(() => {
+            isMusicPlaying = true;
+            updateMusicUI();
+          }).catch(err => {
+            console.warn("Gagal melanjutkan audio saat tab aktif kembali:", err);
+          });
+        }
+      }
+    });
 
     // Otomatis Aktifkan Musik Latar saat Web Dibuka (Eksekusi Instan)
     function initAutoplayMusic() {

@@ -1,5 +1,5 @@
 @echo off
-title Membuka ALLBYMADETA dengan Musik LaguUpdate Otomatis
+title Membuka ALLBYMADETA dengan Musik MusikNew Otomatis
 echo ===================================================
 echo Membuka ALLBYMADETA dengan Autoplay Musik Aktif...
 echo ===================================================
