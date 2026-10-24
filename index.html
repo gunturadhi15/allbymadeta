@@ -532,11 +532,11 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     }
 
     .expandable-content.open {
-      max-height: 1400px;
+      max-height: 4000px;
       opacity: 1;
     }
 
@@ -549,7 +549,7 @@
     }
 
     .faq-answer.open {
-      max-height: 500px;
+      max-height: 800px;
       padding: 16px 20px 20px 20px;
     }
 
@@ -559,6 +559,33 @@
 
     .faq-chevron.open {
       transform: rotate(180deg);
+    }
+
+    /* Filter buttons for Jenis Arisan */
+    .jenis-filter-btn {
+      padding: 0.45rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(216, 178, 103, 0.3);
+      color: #EAECEF;
+      background: rgba(37, 40, 46, 0.85);
+      cursor: pointer;
+    }
+
+    .jenis-filter-btn:hover {
+      border-color: #F7DB88;
+      color: #F7DB88;
+      background: rgba(46, 50, 56, 1);
+    }
+
+    .jenis-filter-btn.active {
+      background: #D8B267;
+      color: #141518 !important;
+      border-color: #D8B267;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(216, 178, 103, 0.35);
     }
 
     /* Pulse effect */
@@ -1347,7 +1374,7 @@
               <path d="m21 21-4.3-4.3" />
             </svg>
           </div>
-          <input type="text" id="inputSearchKamus" placeholder="Cari istilah: DPA, Japo, Opslot, Cover..."
+          <input type="text" id="inputSearchKamus" placeholder="Cari istilah: Japo, Opslot, Cover, Get, Dapin..."
             class="w-full py-3 pl-10 pr-4 rounded-xl text-sm" oninput="renderKamus()" />
         </div>
         <select id="selectFilterKamus" class="py-3 px-4 rounded-xl text-sm" onchange="renderKamus()">
@@ -1584,79 +1611,181 @@
   <!-- ============================================================ -->
   <section id="seksi-5" class="py-16 sm:py-24 px-4">
     <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12">
-        <div class="section-eyebrow">
-          <span>05 • PILIHAN SKEMA ARISAN</span>
+      <!-- Section Header with Filter Tabs Matching Reference -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#434750]">
+        <div>
+          <div class="section-eyebrow text-left mb-2">
+            <span>05 • PILIH SESUAI KEBUTUHAN</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-3 font-black tracking-tight text-[#F7DB88]">
+            JENIS ARISAN YANG TERSEDIA
+          </h2>
+          <p class="text-xs sm:text-sm font-medium text-[#EAECEF] max-w-[65ch]">
+            Setiap jenis memiliki tujuan dan cara pelaksanaan yang berbeda. Pilih yang paling sesuai dengan kesepakatan kelompok.
+          </p>
         </div>
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl mb-4 font-black tracking-tight text-[#F7DB88]">JENIS-JENIS ARISAN
-        </h2>
-        <p class="text-xs sm:text-sm font-bold text-[#EAECEF] max-w-[65ch] mx-auto uppercase tracking-wider">ALLBYMADETA
-          MENGHADIRKAN 3 PILIHAN SKEMA ARISAN UNGGULAN YANG TRANSPARAN</p>
+
+        <!-- Filter Tabs: Semua | Menurun | Tender | Flat -->
+        <div class="flex items-center gap-2 flex-wrap shrink-0">
+          <button onclick="filterJenisArisan('all')" data-filter="all" class="jenis-filter-btn active">Semua</button>
+          <button onclick="filterJenisArisan('menurun')" data-filter="menurun" class="jenis-filter-btn">Menurun</button>
+          <button onclick="filterJenisArisan('tender')" data-filter="tender" class="jenis-filter-btn">Tender</button>
+          <button onclick="filterJenisArisan('flat')" data-filter="flat" class="jenis-filter-btn">Flat</button>
+        </div>
       </div>
 
-      <!-- 3 Kartu Jenis Arisan dengan Expandable Detail -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- 3 Kartu Jenis Arisan -->
+      <div id="jenisArisanGrid" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         <!-- 1. Arisan Menurun -->
-        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between">
+        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between jenis-arisan-card" data-type="menurun">
           <div>
-            <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
-              <div class="number-badge">01</div>
-              <div>
-                <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN MENURUN</h4>
-                <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Setoran Sesuai Nomor Urut Slot
-                </p>
-              </div>
-            </div>
-            <ul class="text-sm text-[#EAECEF] space-y-2.5 mb-5">
-              <li>• <strong class="text-white">Slot Urutan Awal:</strong> Menerima pencairan dana Get lebih cepat di
-                putaran awal dengan iuran proporsional.</li>
-              <li>• <strong class="text-white">Slot Urutan Akhir:</strong> Setoran semakin ringan; total setoran lebih
-                kecil daripada nilai Get (surplus tabungan).</li>
-              <li>• <strong class="text-white">Sifat Iuran:</strong> Nominal per putaran terkunci tetap dari awal hingga
-                kloter selesai.</li>
-            </ul>
-
-            <!-- Expandable Detail Arisan Menurun -->
-            <div id="desc-menurun"
-              class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-3">
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Mekanisme Kerja Slot:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Nomor urut slot (1 s/d 10) menentukan langsung giliran tanggal
-                  pencairan dan besaran setoran. Member yang memilih slot #1 mendapat pencairan pertama dan menyetor
-                  sedikit lebih tinggi sebagai kompensasi likuiditas cepat.</p>
-              </div>
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Keuntungan Slot Bawah (Hemat & Tabungan):</span>
-                <p class="text-[#EAECEF] leading-relaxed">Pada slot #7 s/d #10, total uang yang Anda setorkan selama 10
-                  putaran lebih kecil daripada total dana Get yang Anda terima. Selisih tersebut menjadi keuntungan
-                  murni (profit tabungan berjangka).</p>
-              </div>
-              <div>
-                <span class="text-[#F7DB88] font-bold block mb-1">Rekomendasi Profil:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Sangat cocok bagi pebisnis yang membutuhkan suntikan modal
-                  kerja cepat (ambil slot atas) atau keluarga yang ingin menabung disiplin dengan imbal hasil terukur
-                  (ambil slot bawah).</p>
-              </div>
+            <!-- Badge / Tag -->
+            <div class="mb-3">
+              <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-wider bg-[#D8B267]/15 text-[#F7DB88] px-3 py-1 rounded-full border border-[#D8B267]/30">
+                Nominal berubah
+              </span>
             </div>
 
-            <!-- Button Toggle Detail -->
-            <button onclick="toggleDetail('desc-menurun')" id="desc-menurun-btn"
-              class="outline-gold-btn w-full py-2.5 px-4 text-xs rounded-xl mb-3 flex items-center justify-between">
-              <span class="btn-text">Pelajari Penjelasan Lengkap</span>
-              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="desc-menurun-icon"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
+            <!-- Title & Basic Info -->
+            <h4 class="text-xl font-black uppercase text-[#F7DB88] mb-2 font-['Montserrat']">Arisan Menurun</h4>
+            <p class="text-xs sm:text-sm text-[#EAECEF] leading-relaxed mb-4">
+              Nominal iuran dapat berubah atau menurun sesuai urutan dan kesepakatan kelompok.
+            </p>
+
+            <div class="space-y-2 mb-4 text-xs sm:text-sm text-[#EAECEF]">
+              <p><strong class="text-white">Cara kerja:</strong> Peserta membayar sesuai nominal pada periode berjalan; nominal dapat berbeda antarperiode berdasarkan urutan yang telah disepakati.</p>
+              <p><strong class="text-white">Karakteristik:</strong> Nominal tidak selalu sama, sehingga jadwal dan perhitungan perlu transparan.</p>
+            </div>
+
+            <!-- Catatan Penting Callout -->
+            <div class="p-3.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.3)] rounded-xl text-xs text-[#EAECEF] leading-relaxed mb-5">
+              <strong class="text-[#F7DB88]">Catatan penting:</strong> Tulis semua perubahan nominal, urutan, dan total kewajiban sejak awal.
+            </div>
+
+            <!-- Button Toggle Contoh Alur -->
+            <button onclick="toggleDetail('alur-menurun')" id="alur-menurun-btn" class="outline-gold-btn w-full py-2.5 px-4 text-xs font-bold rounded-xl mb-4 flex items-center justify-between transition-all">
+              <span class="btn-text">▾ Lihat contoh alur</span>
+              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="alur-menurun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
+
+            <!-- Accordion Breakdown: Contoh Arisan Menurun -->
+            <div id="alur-menurun" class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-4">
+              <div>
+                <h5 class="text-sm font-bold text-[#F7DB88] mb-1 font-['Montserrat']">Contoh Arisan Menurun — 3 Peserta</h5>
+                <p class="text-xs text-[#EAECEF]">Misalnya terdapat <strong class="text-white">3 peserta</strong> dengan pencairan masing-masing <strong class="text-[#F7DB88]">Rp3.000.000</strong>.</p>
+              </div>
+
+              <!-- Tabel Arisan Menurun -->
+              <div class="overflow-x-auto rounded-xl border border-[#434750]">
+                <table class="w-full text-xs text-left">
+                  <thead class="bg-[#2E3238] text-[#F7DB88] font-bold uppercase tracking-wider text-[10px] sm:text-[11px] border-b border-[#434750]">
+                    <tr>
+                      <th class="py-2.5 px-3">Nomor</th>
+                      <th class="py-2.5 px-3">Iuran per Bulan</th>
+                      <th class="py-2.5 px-3">Jumlah Bulan</th>
+                      <th class="py-2.5 px-3">Total Iuran</th>
+                      <th class="py-2.5 px-3">Pencairan</th>
+                      <th class="py-2.5 px-3">Selisih</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-[#373C44] text-[#EAECEF] bg-[#1E2024]">
+                    <tr>
+                      <td class="py-2.5 px-3 font-bold text-white">1</td>
+                      <td class="py-2.5 px-3">Rp1.200.000</td>
+                      <td class="py-2.5 px-3">3</td>
+                      <td class="py-2.5 px-3">Rp3.600.000</td>
+                      <td class="py-2.5 px-3">Rp3.000.000</td>
+                      <td class="py-2.5 px-3 font-black text-[#FF6B6B]">-Rp600.000</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2.5 px-3 font-bold text-white">2</td>
+                      <td class="py-2.5 px-3">Rp1.000.000</td>
+                      <td class="py-2.5 px-3">3</td>
+                      <td class="py-2.5 px-3">Rp3.000.000</td>
+                      <td class="py-2.5 px-3">Rp3.000.000</td>
+                      <td class="py-2.5 px-3 font-black text-white">Rp0</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2.5 px-3 font-bold text-white">3</td>
+                      <td class="py-2.5 px-3">Rp800.000</td>
+                      <td class="py-2.5 px-3">3</td>
+                      <td class="py-2.5 px-3">Rp2.400.000</td>
+                      <td class="py-2.5 px-3">Rp3.000.000</td>
+                      <td class="py-2.5 px-3 font-black text-[#4ADE80]">+Rp600.000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Cara Membacanya -->
+              <div class="space-y-2.5 pt-2 border-t border-[#373C44]">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider">Cara Membacanya</h5>
+                
+                <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                  <div class="font-bold text-white mb-1">Nomor 1 — <span class="text-[#FF6B6B]">Rugi Rp600.000</span></div>
+                  <p class="text-[#EAECEF]">
+                    Peserta nomor 1 membayar:<br>
+                    Rp1.200.000 × 3 bulan = <strong class="text-white">Rp3.600.000</strong><br>
+                    Tetapi menerima Rp3.000.000.<br>
+                    Rp3.600.000 - Rp3.000.000 = Rp600.000<br>
+                    Jadi terdapat selisih <strong class="text-[#FF6B6B]">-Rp600.000</strong>.
+                  </p>
+                </div>
+
+                <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                  <div class="font-bold text-white mb-1">Nomor 2 — <span class="text-white">Impas</span></div>
+                  <p class="text-[#EAECEF]">
+                    Rp1.000.000 × 3 bulan = <strong class="text-white">Rp3.000.000</strong><br>
+                    Menerima Rp3.000.000.<br>
+                    Selisih = <strong class="text-white">Rp0</strong>
+                  </p>
+                </div>
+
+                <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                  <div class="font-bold text-white mb-1">Nomor 3 — <span class="text-[#4ADE80]">Untung Rp600.000</span></div>
+                  <p class="text-[#EAECEF]">
+                    Peserta nomor 3 membayar:<br>
+                    Rp800.000 × 3 bulan = <strong class="text-white">Rp2.400.000</strong><br>
+                    Tetapi menerima Rp3.000.000.<br>
+                    Rp3.000.000 - Rp2.400.000 = Rp600.000<br>
+                    Jadi terdapat selisih <strong class="text-[#4ADE80]">+Rp600.000</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Rumus Sederhana -->
+              <div class="pt-2 border-t border-[#373C44]">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-2">Rumus Sederhana</h5>
+                <div class="p-2.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.25)] rounded-xl font-bold text-[#F7DB88] text-center text-xs">
+                  Selisih = Total Pencairan - Total Iuran
+                </div>
+                <ul class="text-xs text-[#EAECEF] space-y-1.5 mt-2.5 pl-2">
+                  <li>• <strong class="text-white">Minus (-)</strong> → peserta membayar lebih besar daripada yang diterima.</li>
+                  <li>• <strong class="text-white">Nol (0)</strong> → peserta impas.</li>
+                  <li>• <strong class="text-white">Plus (+)</strong> → peserta menerima lebih besar daripada total iuran.</li>
+                </ul>
+              </div>
+
+              <!-- Kesimpulan -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-2">Kesimpulan</h5>
+                <div class="space-y-1 mb-2 font-semibold">
+                  <div>Nomor 1 → <span class="text-[#FF6B6B]">-Rp600.000</span></div>
+                  <div>Nomor 2 → <span class="text-white">Rp0</span></div>
+                  <div>Nomor 3 → <span class="text-[#4ADE80]">+Rp600.000</span></div>
+                </div>
+                <p class="text-[#EAECEF] leading-relaxed pt-2 border-t border-[#373C44]">
+                  Jadi, semakin awal nomor, semakin besar iuran yang dibayarkan. Sebaliknya, semakin akhir nomor, semakin kecil total iurannya sehingga selisih yang diterima semakin besar.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <button
-            onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan MENURUN. Mohon info kloter yang tersedia.')"
-            class="wa-btn w-full py-3 text-sm rounded-xl">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan MENURUN. Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
               <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
             </svg>
@@ -1665,65 +1794,166 @@
         </div>
 
         <!-- 2. Arisan Tender -->
-        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between">
+        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between jenis-arisan-card" data-type="tender">
           <div>
-            <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
-              <div class="number-badge">02</div>
-              <div>
-                <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN TENDER (LELANG)</h4>
-                <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Pencairan Fleksibel Sistem
-                  Penawaran</p>
-              </div>
-            </div>
-            <ul class="text-sm text-[#EAECEF] space-y-2.5 mb-5">
-              <li>• <strong class="text-white">Mekanisme Penawaran (Bid):</strong> Pada setiap periode, anggota yang
-                butuh dana mengajukan tawaran potongan tender tertinggi.</li>
-              <li>• <strong class="text-white">Pemenang Tender:</strong> Berhak mencairkan dana Get periode tersebut
-                dikurangi nilai potongan bid yang disepakati.</li>
-              <li>• <strong class="text-white">Bagi Hasil Diskon:</strong> Potongan tender pemenang dialokasikan untuk
-                meringankan setoran anggota lain di kloter yang sama.</li>
-            </ul>
-
-            <!-- Expandable Detail Arisan Tender -->
-            <div id="desc-tender"
-              class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-3">
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Mekanisme Lelang Terbuka:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Penawaran tender dilakukan transparan di grup resmi WhatsApp
-                  menjelang tanggal penarikan. Setiap anggota berhak mengajukan bid sesuai kebutuhan darurat dana tunai.
-                </p>
-              </div>
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Alokasi Diskon Bagi Hasil:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Contoh: Pada kloter Get Rp 10 Juta, pemenang mengajukan bid
-                  potongan Rp 600.000. Pemenang menerima Rp 9.400.000, dan potongan Rp 600.000 dibagi rata untuk
-                  mengurangi setoran seluruh anggota lainnya pada putaran tersebut.</p>
-              </div>
-              <div>
-                <span class="text-[#F7DB88] font-bold block mb-1">Rekomendasi Profil:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Sangat fleksibel bagi anggota yang tidak tahu kapan tepatnya
-                  membutuhkan likuiditas dana tunai, atau anggota pasif yang ingin menikmati diskon setoran rutin setiap
-                  putarannya.</p>
-              </div>
+            <!-- Badge / Tag -->
+            <div class="mb-3">
+              <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-wider bg-[#D8B267]/15 text-[#F7DB88] px-3 py-1 rounded-full border border-[#D8B267]/30">
+                Sistem lelang
+              </span>
             </div>
 
-            <!-- Button Toggle Detail -->
-            <button onclick="toggleDetail('desc-tender')" id="desc-tender-btn"
-              class="outline-gold-btn w-full py-2.5 px-4 text-xs rounded-xl mb-3 flex items-center justify-between">
-              <span class="btn-text">Pelajari Penjelasan Lengkap</span>
-              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="desc-tender-icon"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
+            <!-- Title & Basic Info -->
+            <h4 class="text-xl font-black uppercase text-[#F7DB88] mb-2 font-['Montserrat']">Arisan Tender</h4>
+            <p class="text-xs sm:text-sm text-[#EAECEF] leading-relaxed mb-4">
+              Pencairan ditentukan melalui sistem penawaran (tender/lelang) bagi anggota yang membutuhkan dana lebih cepat.
+            </p>
+
+            <div class="space-y-2 mb-4 text-xs sm:text-sm text-[#EAECEF]">
+              <p><strong class="text-white">Cara kerja:</strong> Peserta membayar iuran flat per periode. Pada setiap periode pencairan, peserta yang membutuhkan dana mengajukan penawaran tender; penawar tertinggi mendapatkan pencairan.</p>
+              <p><strong class="text-white">Karakteristik:</strong> Sangat fleksibel bagi yang membutuhkan likuiditas dana mendesak, sementara peserta lain menikmati pembagian nilai tender yang meringankan iuran.</p>
+            </div>
+
+            <!-- Catatan Penting Callout -->
+            <div class="p-3.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.3)] rounded-xl text-xs text-[#EAECEF] leading-relaxed mb-5">
+              <strong class="text-[#F7DB88]">Catatan penting:</strong> Tentukan batas minimal/maksimal tender dan mekanisme pembagian hasil lelang sejak awal kloter.
+            </div>
+
+            <!-- Button Toggle Contoh Alur -->
+            <button onclick="toggleDetail('alur-tender')" id="alur-tender-btn" class="outline-gold-btn w-full py-2.5 px-4 text-xs font-bold rounded-xl mb-4 flex items-center justify-between transition-all">
+              <span class="btn-text">▾ Lihat contoh alur</span>
+              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="alur-tender-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
+
+            <!-- Accordion Breakdown: Contoh Arisan Tender -->
+            <div id="alur-tender" class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-4">
+              <div>
+                <h5 class="text-sm font-bold text-[#F7DB88] mb-1 font-['Montserrat']">Contoh Sederhana</h5>
+                <p class="text-xs text-[#EAECEF] mb-1">Misalnya terdapat <strong class="text-white">3 anggota</strong>:</p>
+                <ul class="pl-2 space-y-0.5 text-[#EAECEF] text-xs">
+                  <li>• Anggota A</li>
+                  <li>• Anggota B</li>
+                  <li>• Anggota C</li>
+                </ul>
+                <div class="mt-2.5 text-xs text-[#EAECEF] space-y-1">
+                  <p>Iuran flat: <strong class="text-white">Rp1.000.000 per bulan</strong></p>
+                  <p>Jumlah anggota: <strong class="text-white">3 orang</strong></p>
+                </div>
+                <div class="mt-2 text-xs text-[#EAECEF]">
+                  <p>Maka dana arisan setiap bulan:</p>
+                  <div class="p-2.5 bg-[#25282E] rounded-xl border border-[#434750] font-bold text-[#F7DB88] text-center my-1.5">
+                    3 × Rp1.000.000 = Rp3.000.000
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabel Tender Periode Pertama -->
+              <div class="pt-2 border-t border-[#373C44]">
+                <p class="text-xs text-[#EAECEF] mb-2">Pada periode pertama, masing-masing anggota melakukan tender:</p>
+                <div class="overflow-x-auto rounded-xl border border-[#434750]">
+                  <table class="w-full text-xs text-left">
+                    <thead class="bg-[#2E3238] text-[#F7DB88] font-bold uppercase tracking-wider text-[11px] border-b border-[#434750]">
+                      <tr>
+                        <th class="py-2.5 px-3">Anggota</th>
+                        <th class="py-2.5 px-3">Nilai Tender</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#373C44] text-[#EAECEF] bg-[#1E2024]">
+                      <tr>
+                        <td class="py-2.5 px-3 font-semibold text-white">A</td>
+                        <td class="py-2.5 px-3">Rp200.000</td>
+                      </tr>
+                      <tr class="bg-[rgba(216,178,103,0.08)]">
+                        <td class="py-2.5 px-3 font-bold text-[#F7DB88]">B</td>
+                        <td class="py-2.5 px-3 font-bold text-[#F7DB88]">Rp350.000</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2.5 px-3 font-semibold text-white">C</td>
+                        <td class="py-2.5 px-3">Rp250.000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="mt-2.5 text-xs text-[#EAECEF] leading-relaxed">
+                  Karena Anggota B memberikan tender paling besar, yaitu <strong class="text-[#F7DB88]">Rp350.000</strong>, maka <strong class="text-white">Anggota B mendapatkan arisan</strong>.
+                </p>
+              </div>
+
+              <!-- Pembagian Nilai Tender -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-1.5">Pembagian Nilai Tender</h5>
+                <p class="text-[#EAECEF] mb-2">
+                  Nilai tender Anggota B: <strong class="text-white">Rp350.000</strong>. Karena Anggota B sudah mendapatkan arisan, nilai tender tersebut dibagikan kepada anggota yang belum mendapatkan arisan, yaitu A dan C.
+                </p>
+                <div class="p-2 bg-[#1E2024] rounded-lg border border-[#434750] font-bold text-[#F7DB88] text-center my-1.5">
+                  Rp350.000 ÷ 2 = Rp175.000
+                </div>
+                <ul class="pl-2 space-y-1 text-[#EAECEF] mt-2">
+                  <li>• Anggota A mendapatkan <strong class="text-[#4ADE80]">Rp175.000</strong></li>
+                  <li>• Anggota C mendapatkan <strong class="text-[#4ADE80]">Rp175.000</strong></li>
+                </ul>
+              </div>
+
+              <!-- Berapa yang Diterima Pemenang Tender -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-1.5">Berapa yang Diterima Pemenang Tender?</h5>
+                <p class="text-[#EAECEF]">
+                  Dana arisan: <strong class="text-white">Rp3.000.000</strong><br>
+                  Dikurangi nilai tender: Rp3.000.000 - Rp350.000 = <strong class="text-[#F7DB88]">Rp2.650.000</strong>
+                </p>
+                <p class="mt-2 text-[#EAECEF] pt-2 border-t border-[#373C44]">
+                  Jadi Anggota B menerima <strong class="text-[#F7DB88]">Rp2.650.000</strong> sebagai pencairan arisan. Sementara itu, Anggota A dan C masing-masing mendapatkan bagian dari nilai tender sebesar <strong class="text-[#4ADE80]">Rp175.000</strong>.
+                </p>
+              </div>
+
+              <!-- Rumus Arisan Tender -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-2">Rumus Arisan Tender</h5>
+                <div class="space-y-2.5">
+                  <div>
+                    <strong class="text-white block font-semibold">1. Dana Arisan</strong>
+                    <p class="text-[#EAECEF]">Dana Arisan = Jumlah Anggota × Iuran Flat</p>
+                    <p class="text-[#F7DB88] font-bold mt-0.5">Contoh: 3 × Rp1.000.000 = Rp3.000.000</p>
+                  </div>
+                  <div class="pt-2 border-t border-[#373C44]">
+                    <strong class="text-white block font-semibold">2. Nilai Pencairan Pemenang Tender</strong>
+                    <p class="text-[#EAECEF]">Pencairan = Dana Arisan - Nilai Tender</p>
+                    <p class="text-[#F7DB88] font-bold mt-0.5">Contoh: Rp3.000.000 - Rp350.000 = Rp2.650.000</p>
+                  </div>
+                  <div class="pt-2 border-t border-[#373C44]">
+                    <strong class="text-white block font-semibold">3. Pembagian Tender</strong>
+                    <p class="text-[#EAECEF]">Jika nilai tender dibagikan rata kepada anggota yang belum mendapatkan arisan:</p>
+                    <div class="p-2 bg-[#1E2024] rounded-lg border border-[#434750] text-[#F7DB88] font-semibold my-1 text-[11px] text-center">
+                      Bagian Tender per Anggota = Nilai Tender ÷ Jumlah Anggota yang Belum Mendapatkan Arisan
+                    </div>
+                    <p class="text-[#F7DB88] font-bold mt-0.5">Contoh: Rp350.000 ÷ 2 = Rp175.000 per anggota</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Intinya Callout Card -->
+              <div class="p-3.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.3)] rounded-xl text-center text-xs leading-relaxed">
+                <div class="text-[#F7DB88] font-bold mb-1 uppercase tracking-wider">Intinya</div>
+                <p class="text-[#F7DB88] font-bold">
+                  Iuran sama → Tender berbeda → Tender terbesar menang → Nilai tender dibagikan kepada anggota yang belum mendapatkan arisan.
+                </p>
+              </div>
+
+              <p class="text-[#EAECEF] text-xs leading-relaxed">
+                Dengan sistem ini, peserta yang ingin mendapatkan arisan lebih awal dapat memberikan penawaran tender. Semakin besar nilai tender yang ditawarkan, semakin besar peluang menjadi penerima arisan pada periode tersebut.
+              </p>
+
+              <!-- Catatan Callout -->
+              <div class="p-3 bg-[rgba(216,178,103,0.08)] border border-[rgba(216,178,103,0.2)] rounded-xl text-xs text-[#EAECEF] leading-relaxed">
+                <strong class="text-[#F7DB88]">Catatan:</strong> Mekanisme pembagian nilai tender dapat disesuaikan dengan aturan arisan yang digunakan, misalnya apakah dibagi hanya kepada anggota yang belum mendapatkan arisan atau kepada seluruh anggota selain pemenang tender.
+              </div>
+            </div>
           </div>
 
-          <button
-            onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan TENDER (Lelang). Mohon info kloter yang tersedia.')"
-            class="wa-btn w-full py-3 text-sm rounded-xl">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan TENDER (Lelang). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
               <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
             </svg>
@@ -1732,63 +1962,104 @@
         </div>
 
         <!-- 3. Arisan Flat -->
-        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between">
+        <div class="luxury-card p-6 rounded-2xl flex flex-col justify-between jenis-arisan-card" data-type="flat">
           <div>
-            <div class="flex items-center gap-3 mb-4 pb-3 hairline-divider">
-              <div class="number-badge">03</div>
-              <div>
-                <h4 class="text-lg font-black uppercase text-[#F7DB88]">ARISAN FLAT (TETAP)</h4>
-                <p class="text-[10px] uppercase text-[#F7DB88] font-bold tracking-wider">Setoran Sama Rata Seluruh
-                  Peserta</p>
-              </div>
-            </div>
-            <ul class="text-sm text-[#EAECEF] space-y-2.5 mb-5">
-              <li>• <strong class="text-white">Iuran Sama Rata:</strong> Tidak ada selisih nominal pembayaran antara
-                penerima urutan pertama maupun urutan terakhir.</li>
-              <li>• <strong class="text-white">Giliran Pencairan:</strong> Ditentukan melalui undian (kocokan
-                transparan) berkala yang disiarkan di grup WhatsApp resmi.</li>
-              <li>• <strong class="text-white">Perencanaan Stabil:</strong> Anggaran pengeluaran tetap per bulan tanpa
-                fluktuasi sehingga mudah dipantau.</li>
-            </ul>
-
-            <!-- Expandable Detail Arisan Flat -->
-            <div id="desc-flat"
-              class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-3">
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Mekanisme Pengundian Terbuka:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Pada setiap tanggal jatuh tempo putaran, nomor peserta dikocok
-                  secara adil dan transparan. Anggota yang sudah menerima dana Get tidak akan diundi lagi pada putaran
-                  berikutnya namun tetap berkewajiban menyetor flat hingga kloter usai.</p>
-              </div>
-              <div class="pb-2 border-b border-[#373C44]">
-                <span class="text-[#F7DB88] font-bold block mb-1">Jaminan Dana Talangan (Cover):</span>
-                <p class="text-[#EAECEF] leading-relaxed">Pemenang undian dijamin 100% menerima pencairan tepat pada
-                  hari pengundian, tanpa tertunda oleh anggota yang belum sempat mentransfer.</p>
-              </div>
-              <div>
-                <span class="text-[#F7DB88] font-bold block mb-1">Rekomendasi Profil:</span>
-                <p class="text-[#EAECEF] leading-relaxed">Sangat cocok untuk pemula, rekan kerja, dan komunitas keluarga
-                  yang menyukai kesederhanaan skema arisan murni tanpa perhitungan selisih angka yang rumit.</p>
-              </div>
+            <!-- Badge / Tag -->
+            <div class="mb-3">
+              <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-wider bg-[#D8B267]/15 text-[#F7DB88] px-3 py-1 rounded-full border border-[#D8B267]/30">
+                Iuran tetap
+              </span>
             </div>
 
-            <!-- Button Toggle Detail -->
-            <button onclick="toggleDetail('desc-flat')" id="desc-flat-btn"
-              class="outline-gold-btn w-full py-2.5 px-4 text-xs rounded-xl mb-3 flex items-center justify-between">
-              <span class="btn-text">Pelajari Penjelasan Lengkap</span>
-              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="desc-flat-icon"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" aria-hidden="true">
+            <!-- Title & Basic Info -->
+            <h4 class="text-xl font-black uppercase text-[#F7DB88] mb-2 font-['Montserrat']">Arisan Flat</h4>
+            <p class="text-xs sm:text-sm text-[#EAECEF] leading-relaxed mb-4">
+              Setiap peserta membayar nominal yang sama pada setiap periode.
+            </p>
+
+            <div class="space-y-2 mb-4 text-xs sm:text-sm text-[#EAECEF]">
+              <p><strong class="text-white">Cara kerja:</strong> Peserta membayar iuran tetap sesuai jadwal, lalu penerima ditentukan berdasarkan urutan atau metode pengundian yang disepakati.</p>
+              <p><strong class="text-white">Karakteristik:</strong> Nominal tetap, mudah dihitung, dan lebih sederhana dikelola.</p>
+            </div>
+
+            <!-- Catatan Penting Callout -->
+            <div class="p-3.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.3)] rounded-xl text-xs text-[#EAECEF] leading-relaxed mb-5">
+              <strong class="text-[#F7DB88]">Catatan penting:</strong> Tetapkan aturan tertulis, batas pembayaran, dan mekanisme jika peserta terlambat.
+            </div>
+
+            <!-- Button Toggle Contoh Alur -->
+            <button onclick="toggleDetail('alur-flat')" id="alur-flat-btn" class="outline-gold-btn w-full py-2.5 px-4 text-xs font-bold rounded-xl mb-4 flex items-center justify-between transition-all">
+              <span class="btn-text">▾ Lihat contoh alur</span>
+              <svg class="w-4 h-4 text-[#D8B267] transition-transform duration-300" id="alur-flat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </button>
+
+            <!-- Accordion Breakdown: Contoh Arisan Flat -->
+            <div id="alur-flat" class="expandable-content mb-4 bg-[#1E2024] rounded-xl border border-[#434750] p-4 text-xs space-y-4">
+              <div>
+                <h5 class="text-sm font-bold text-[#F7DB88] mb-1 font-['Montserrat']">Contoh</h5>
+                <p class="text-xs text-[#EAECEF]">Terdapat <strong class="text-white">5 anggota</strong> dengan iuran flat:</p>
+                <div class="p-2.5 bg-[#25282E] rounded-xl border border-[#434750] font-bold text-[#F7DB88] text-center my-2">
+                  5 × Rp500.000 = Rp2.500.000
+                </div>
+              </div>
+
+              <!-- Spin Box -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44]">
+                <h5 class="text-xs font-bold text-white mb-2">Nama yang masuk ke dalam Spin:</h5>
+                <div class="space-y-1.5 pl-2 text-xs">
+                  <div class="flex items-center gap-2"><span>🎡</span> <span class="font-medium text-white">Andi</span></div>
+                  <div class="flex items-center gap-2"><span>🎡</span> <span class="font-medium text-white">Budi</span></div>
+                  <div class="flex items-center gap-2"><span>🎡</span> <span class="font-bold text-[#F7DB88]">Citra</span></div>
+                  <div class="flex items-center gap-2"><span>🎡</span> <span class="font-medium text-white">Deni</span></div>
+                  <div class="flex items-center gap-2"><span>🎡</span> <span class="font-medium text-white">Eka</span></div>
+                </div>
+              </div>
+
+              <!-- Hasil Undian -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs leading-relaxed">
+                <p class="text-[#EAECEF] mb-2">
+                  Setelah spin dilakukan, misalnya yang terpilih adalah <strong class="text-[#F7DB88]">Citra</strong>.
+                </p>
+                <div class="p-2.5 bg-[rgba(74,222,128,0.12)] border border-[rgba(74,222,128,0.3)] rounded-xl font-bold text-[#4ADE80] text-center my-1.5">
+                  Maka: Citra → Mendapatkan arisan Rp2.500.000
+                </div>
+                <p class="text-[#EAECEF] text-xs mt-2 pt-2 border-t border-[#373C44]">
+                  Citra kemudian tidak mengikuti undian pada periode berikutnya apabila sistem menggunakan mekanisme sekali menang, keluar dari undian.
+                </p>
+              </div>
+
+              <!-- Rumus Dana Arisan -->
+              <div class="p-3 bg-[#25282E] rounded-xl border border-[#373C44] text-xs">
+                <h5 class="text-xs font-bold text-[#F7DB88] uppercase tracking-wider mb-1.5">Rumus Dana Arisan</h5>
+                <div class="p-2.5 bg-[#1E2024] rounded-xl border border-[#434750] font-bold text-[#F7DB88] text-center my-1.5">
+                  Dana Arisan = Jumlah Anggota × Iuran Flat
+                </div>
+                <p class="text-xs text-[#EAECEF] font-semibold text-center mt-1">Contoh: 5 × Rp500.000 = Rp2.500.000</p>
+              </div>
+
+              <!-- Intinya Callout Card -->
+              <div class="p-3.5 bg-[rgba(216,178,103,0.12)] border border-[rgba(216,178,103,0.3)] rounded-xl text-center text-xs leading-relaxed">
+                <div class="text-[#F7DB88] font-bold mb-1">✨ Intinya</div>
+                <p class="text-[#F7DB88] font-bold">
+                  Iuran sama → Nama masuk Spin → Spin secara acak → Nama terpilih mendapatkan arisan.
+                </p>
+              </div>
+
+              <p class="text-[#EAECEF] text-xs leading-relaxed">
+                Tidak ada tender dan tidak ada perbedaan jumlah iuran. Semua anggota memiliki kesempatan untuk mendapatkan arisan berdasarkan hasil pengundian.
+              </p>
+
+              <!-- Final Quote Banner -->
+              <div class="p-3.5 bg-gradient-to-r from-[rgba(216,178,103,0.18)] to-[rgba(216,178,103,0.06)] border border-[rgba(216,178,103,0.35)] rounded-xl text-center font-bold text-[#F7DB88] text-xs leading-relaxed">
+                Arisan Flat: bayar sama, kesempatan sama, siapa yang terpilih ditentukan oleh keberuntungan! 🌸
+              </div>
+            </div>
           </div>
 
-          <button
-            onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan FLAT (Tetap). Mohon info kloter yang tersedia.')"
-            class="wa-btn w-full py-3 text-sm rounded-xl">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <button onclick="openWhatsAppWithText('Halo Admin, saya ingin cek list arisan FLAT (Tetap). Mohon info kloter yang tersedia.')" class="wa-btn w-full py-3 text-sm rounded-xl">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
               <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
             </svg>
@@ -2882,7 +3153,13 @@
         if (btn) {
           const textSpan = btn.querySelector('.btn-text');
           if (textSpan) {
-            textSpan.textContent = id.startsWith('sk-') ? 'Baca S&K Lengkap' : 'Pelajari Penjelasan Lengkap';
+            if (id.startsWith('alur-')) {
+              textSpan.textContent = '▾ Lihat contoh alur';
+            } else if (id.startsWith('sk-')) {
+              textSpan.textContent = 'Baca S&K Lengkap';
+            } else {
+              textSpan.textContent = 'Pelajari Penjelasan Lengkap';
+            }
           }
         }
       } else {
@@ -2891,9 +3168,45 @@
         if (btn) {
           const textSpan = btn.querySelector('.btn-text');
           if (textSpan) {
-            textSpan.textContent = 'Tutup Penjelasan';
+            if (id.startsWith('alur-')) {
+              textSpan.textContent = '▴ Tutup contoh alur';
+            } else {
+              textSpan.textContent = 'Tutup Penjelasan';
+            }
           }
         }
+      }
+    }
+
+    // Filter Interaktif Jenis Arisan (Semua | Menurun | Tender | Flat)
+    function filterJenisArisan(type) {
+      const buttons = document.querySelectorAll('.jenis-filter-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === type) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const cards = document.querySelectorAll('.jenis-arisan-card');
+      const grid = document.getElementById('jenisArisanGrid');
+      if (!grid) return;
+
+      if (type === 'all') {
+        grid.className = 'grid grid-cols-1 lg:grid-cols-3 gap-6';
+        cards.forEach(card => {
+          card.style.display = '';
+        });
+      } else {
+        grid.className = 'grid grid-cols-1 max-w-3xl mx-auto gap-6';
+        cards.forEach(card => {
+          if (card.getAttribute('data-type') === type) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       }
     }
 
@@ -2901,7 +3214,6 @@
     // 7. KAMUS ALLBYMADETA
     // ===================================================================
     const KAMUS_DATA = [
-      { term: "DPA", full: "Deposit Akhir", cat: "keuangan", desc: "Dana jaminan komitmen yang dibayarkan di awal pendaftaran (atau ditahan dari pencairan) dan otomatis digunakan untuk melunasi setoran peserta pada putaran Jatuh Tempo (Japo) paling akhir." },
       { term: "UM", full: "Uang Muka / Uang Masuk / Upah Member", cat: "keuangan", desc: "Pada program Cicilan/Kredit berarti Uang Muka (Down Payment) tanda jadi pemesanan barang; pada kloter arisan tertentu merujuk pada Uang Masuk registrasi atau Upah Member." },
       { term: "Dapin", full: "Dana Pinjaman", cat: "layanan", desc: "Fasilitas pinjaman dana tunai jangka pendek khusus bagi member terverifikasi dengan ketentuan plafon, tenor, dan jasa layanan yang transparan sesuai akad." },
       { term: "Japo", full: "Jatuh Tempo", cat: "operasional", desc: "Batas tanggal dan jam maksimal pembayaran: Semua aktifitas japo clear 18:00, Closing global 19:00." },
@@ -3004,28 +3316,89 @@
     }
 
     // ===================================================================
-    // 8. FAQ ACCORDION
+    // 8. FAQ ACCORDION (SESUAI PEDOMAN RESMI ALLBYMADETA)
     // ===================================================================
     const FAQ_DATA = [
-      { q: "Apakah dana arisan saya aman? Bagaimana jika ada peserta yang terlambat bayar?", a: "Dana Anda dijamin aman 100% berkat sistem Dana Talangan (Cover) dari pengelola resmi. Jika terdapat anggota yang terlambat melakukan pembayaran, manajemen akan mendanai terlebih dahulu agar penerima Get tetap menerima pencairan tepat pada jadwal yang telah ditetapkan. Peserta yang menunggak akan ditagih intensif dan dikenakan sanksi denda." },
-      { q: "Apa perbedaan mendasar antara DPA dan biaya Administrasi?", a: "DPA (Deposit Akhir) merupakan dana jaminan komitmen yang disetorkan di awal pendaftaran dan akan dikembalikan utuh dalam bentuk pelunasan setoran pada putaran terakhir kloter Anda. Sedangkan biaya administrasi (jika ada) adalah biaya operasional pengelolaan kloter yang bersifat terpisah dan transparan sejak awal akad." },
-      { q: "Apakah member baru diperbolehkan memilih slot urutan atas (cair awal)?", a: "Bisa, selama nomor slot tersebut masih berstatus Opslot (tersedia). Pada skema Arisan Menurun, slot urutan awal memiliki nilai setoran per putaran yang lebih tinggi karena Anda menerima likuiditas dana Get lebih awal untuk kebutuhan modal atau keperluan mendesak." },
-      { q: "Bagaimana alur resmi Oper Slot apabila terjadi keadaan darurat?", a: "Jika mengalami keadaan darurat dan harus keluar dari kloter, anggota wajib segera berkoordinasi dengan Admin untuk proses Oper Slot resmi. Anggota berkewajiban mencari pengganti yang bersedia melalui verifikasi data KYC oleh Admin. Oper slot tanpa persetujuan Admin merupakan pelanggaran berat." },
-      { q: "Bagaimana prosedur pengajuan fasilitas Dana Pinjaman (Dapin) atau Kredit?", a: "Untuk Dapin: Hubungi Admin via WhatsApp dan sampaikan estimasi nominal pinjaman yang dibutuhkan. Admin akan menilai kelayakan berdasarkan riwayat setoran arisan Anda. Untuk Kredit: Silakan minta katalog resmi barang atau emas, pilih item, dan Admin akan menyiapkan rincian UM serta tabel kartu kontrol cicilan." },
-      { q: "Apakah situs web ini kompatibel diakses melalui perangkat Android dan iPhone?", a: "Ya, situs ini dirancang 100% responsif dengan standar fluid layout yang optimal di seluruh perangkat: ponsel Android, iPhone/iPad (iOS), tablet, laptop, dan monitor komputer resolusi tinggi." }
+      {
+        q: "♡ 1. GIMANA CARA JOIN ARISAN?",
+        a: "Member bisa menghubungi admin terlebih dahulu untuk menanyakan slot yang tersedia. Admin akan memberikan informasi mengenai nominal GET, jadwal pembayaran, biaya admin, serta ketentuan arisan yang berlaku."
+      },
+      {
+        q: "♡ 2. KALAU MAU JOIN, HARUS ISI DATA APA SAJA?",
+        a: "Member wajib mengisi formulir data diri sesuai format yang diberikan admin. Pastikan semua data diisi dengan benar, lengkap, dan sesuai identitas agar proses pendataan berjalan lancar."
+      },
+      {
+        q: "♡ 3. SETELAH ISI DATA, APAKAH SLOT LANGSUNG FIX?",
+        a: "Belum tentu. Data yang masuk akan diperiksa terlebih dahulu oleh admin/owner. Slot dinyatakan FIX setelah mendapatkan persetujuan dan konfirmasi dari admin/owner."
+      },
+      {
+        q: "♡ 4. KAPAN HARUS MEMBAYAR SETELAH JOIN?",
+        a: "Pembayaran mengikuti jadwal dan ketentuan slot yang dipilih. Member wajib memperhatikan tanggal jatuh tempo (JAPO) yang telah diinformasikan oleh admin."
+      },
+      {
+        q: "♡ 6. KAPAN GET DITERIMA?",
+        a: "GET diberikan sesuai urutan dan jadwal yang tertera pada slot arisan. Member diharapkan memastikan data penerima dan informasi rekening sudah benar agar proses pencairan berjalan lancar."
+      },
+      {
+        q: "♡ 7. SETELAH GET, APAKAH MASIH HARUS BAYAR?",
+        a: "<strong class=\"text-[#F7DB88]\">IYA, WAJIB!</strong> Mendapatkan GET bukan berarti kewajiban pembayaran selesai. Member tetap wajib melanjutkan pembayaran sesuai jadwal dan ketentuan slot sampai seluruh kewajibannya selesai."
+      },
+      {
+        q: "♡ 8. KALAU SUDAH GET, PEMBAYARAN SELANJUTNYA KAPAN?",
+        a: "Pembayaran selanjutnya mengikuti tanggal jatuh tempo (JAPO) yang sudah ditentukan pada slot masing-masing. Jangan menunggu ditagih admin untuk melakukan pembayaran."
+      },
+      {
+        q: "♡ 9. APAKAH MEMBER BOLEH BERHENTI BAYAR SETELAH GET?",
+        a: "<strong class=\"text-[#FF6B6B]\">TIDAK BOLEH.</strong> Member yang sudah menerima GET tetap memiliki kewajiban untuk menyelesaikan pembayaran sesuai kesepakatan awal. Keputusan untuk join berarti member telah menyetujui seluruh ketentuan slot."
+      },
+      {
+        q: "♡ 10. BAGAIMANA KALAU TERLAMBAT MEMBAYAR?",
+        a: "Member wajib segera menghubungi admin jika mengalami kendala pembayaran. Keterlambatan akan ditangani sesuai ketentuan denda dan peraturan arisan yang telah disepakati."
+      },
+      {
+        q: "♡ 11. APAKAH SLOT YANG SUDAH FIX BISA DIBATALKAN?",
+        a: "Slot yang sudah dinyatakan FIX mengikuti ketentuan pembatalan yang berlaku. Pastikan sudah mempertimbangkan kemampuan membayar sebelum mengambil slot."
+      },
+      {
+        q: "♡ 12. BAGAIMANA KALAU INGIN MENANYAKAN STATUS PEMBAYARAN ATAU GET?",
+        a: "Silakan hubungi admin melalui kontak resmi ALL BY MADETA dengan menyertakan nama member dan informasi slot agar dapat diperiksa dengan lebih mudah."
+      },
+      {
+        q: "♡ 13. APA UANG ADMIN BOLEH POTGET?",
+        a: "Tidak. Uang admin awal tidak diperbolehkan melakukan POTGET atau pemotongan nominal GET member. GET wajib dibayarkan secara FULL di awal sesuai nominal yang telah disepakati."
+      },
+      {
+        q: "♡ 14. APAKAH ADMIN AKAN MENGINGATKAN JATUH TEMPO?",
+        a: "Admin dapat memberikan pengingat pembayaran sesuai sistem dan ketentuan yang berlaku. Namun, setiap member tetap bertanggung jawab untuk mengingat dan memenuhi kewajiban pembayarannya masing-masing."
+      },
+      {
+        q: "♡ 15. APA YANG HARUS DIPERHATIKAN SEBELUM JOIN?",
+        a: `Sebelum mengambil slot, pastikan member sudah:
+<ul class="mt-2.5 space-y-1.5 pl-4 list-disc text-[#EAECEF]">
+  <li>Membaca seluruh ketentuan arisan.</li>
+  <li>Memahami nominal GET dan kewajiban pembayaran.</li>
+  <li>Mengetahui jadwal JAPO setiap pembayaran.</li>
+  <li>Memahami aturan denda dan pembatalan.</li>
+  <li>Memastikan kemampuan membayar sampai kewajiban selesai.</li>
+</ul>`
+      },
+      {
+        q: "♡ 16. APAKAH PENCAIRAN GET BOLEH MENGGUNAKAN REKENING YANG TIDAK SESUAI DENGAN KTP?",
+        a: "<strong class=\"text-[#FF6B6B]\">Tidak boleh.</strong> Pencairan GET wajib menggunakan rekening atas nama yang sesuai dengan identitas KTP member. Apabila nama pemilik rekening tidak sesuai dengan KTP, maka pencairan GET akan di-HOLD sampai member memenuhi ketentuan yang berlaku. Pastikan data rekening sudah benar dan sesuai sebelum jadwal pencairan GET."
+      }
     ];
 
     function renderFaq() {
       const container = document.getElementById("faqContainer");
       container.innerHTML = FAQ_DATA.map((item, i) => `
-    <div class="luxury-card rounded-2xl overflow-hidden">
-      <button onclick="toggleFaq(${i})" class="w-full p-5 flex items-center justify-between text-left hover:bg-[rgba(216,178,103,0.05)] transition-all" id="faqBtn${i}">
-        <span class="text-sm font-semibold text-white pr-4">${item.q}</span>
+    <div class="luxury-card rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#D8B267]/50">
+      <button onclick="toggleFaq(${i})" class="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-[rgba(216,178,103,0.05)] transition-all cursor-pointer" id="faqBtn${i}">
+        <span class="text-xs sm:text-sm font-bold text-white pr-4 font-['Montserrat'] tracking-wide leading-snug">${item.q}</span>
         <svg class="w-4 h-4 shrink-0 text-[#D8B267] faq-chevron" id="faqIcon${i}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
-      <div class="faq-answer text-sm text-[#EAECEF] border-t border-[#434750] leading-relaxed" id="faqAnswer${i}">${item.a}</div>
+      <div class="faq-answer text-xs sm:text-sm text-[#EAECEF] border-t border-[#434750] leading-relaxed" id="faqAnswer${i}">${item.a}</div>
     </div>
   `).join("");
     }
